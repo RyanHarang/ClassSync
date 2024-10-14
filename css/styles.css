@@ -63,6 +63,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #2980b9;
+.btn:hover,
+.btn:focus {
+  background-color: #3990a9;
 }
