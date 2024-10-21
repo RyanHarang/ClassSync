@@ -26,6 +26,10 @@ body {
   color: white;
 }
 
+.link:hover {
+  outline: 2px solid #3498db;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -71,4 +75,9 @@ body {
 .btn:hover,
 .btn:focus {
   background-color: #3990a9;
+}
+
+.print-icon {
+  width: 1rem;
+  height: 1rem;
 }
