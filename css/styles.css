@@ -27,7 +27,7 @@ body {
 }
 
 .link:hover {
-  outline: 2px solid #3498db;
+  outline: 2px solid #1478bb;
 }
 
 .content {
@@ -65,7 +65,7 @@ body {
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  background-color: #3498db;
+  background-color: #1478bb;
   color: white;
   font-size: 1.6rem;
   cursor: pointer;
