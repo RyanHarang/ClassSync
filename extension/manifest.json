@@ -3,7 +3,7 @@
   "name": "Class Sync",
   "version": "1.0",
   "description": "Sync Canvas calendar events with Outlook.",
-  "permissions": ["identity", "storage"],
+  "permissions": ["identity", "storage", "activeTab"],
   "host_permissions": [
     "https://canvas.instructure.com/*",
     "https://graph.microsoft.com/*"

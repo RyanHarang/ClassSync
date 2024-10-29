@@ -9,8 +9,17 @@
 </head>
 
 <body>
-  <button id="syncButton" class="btn">Sync Calendar</button>
-  <script src="popup.js"></script>
+  <div id="token-form" class="token-form">
+    <label for="canvas-token">Enter Canvas API Token:</label>
+    <input type="text" id="canvas-token" placeholder="Canvas API Token" />
+    <button id="save-token" class="btn">Save Token</button>
+  </div>
+
+  <div id="main-content" style="display: none;">
+    <button id="fetch-events" class="btn">Sync Calendar</button>
+    <ul id="event-list"></ul>
+  </div>
+  <script src="../js/popup.js"></script>
 </body>
 
 </html>
