@@ -13,9 +13,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const endDateStr = endDate.toISOString().split("T")[0];
 
     // Add query parameters
-    // url.searchParams.append("type", "event");
-    url.searchParams.append("start_date", today);
-    url.searchParams.append("end_date", endDateStr);
+    url.searchParams.append("type", "assignment");
+    // url.searchParams.append("start_date", today);
+    // url.searchParams.append("end_date", endDateStr);
+    url.searchParams.append("all_events", "true");
     // url.searchParams.append("per_page", "50");
 
     fetch(url, {

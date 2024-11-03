@@ -66,10 +66,13 @@ async function fetchCanvasEventsFromToday() {
       },
       (response) => {
         if (chrome.runtime.lastError) {
+          console.error("Runtime error:", chrome.runtime.lastError);
           reject(chrome.runtime.lastError);
         } else if (response.error) {
+          console.error("Response error:", response.error);
           reject(new Error(response.error));
         } else {
+          console.log("Received response:", response);
           resolve(response.events);
         }
       }
