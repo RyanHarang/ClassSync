@@ -15,7 +15,8 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.token-form {
+.token-form,
+.main-content {
   width: 100%;
   display: flex;
   flex-direction: column;
