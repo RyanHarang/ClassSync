@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     mainContent.style.display = "none";
   }
 
-  // Event listener to save the token when the user clicks "Save Token"
+  // Event listener for saving token
   document.getElementById("save-token").addEventListener("click", async () => {
     const tokenInput = document.getElementById("canvas-token").value;
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       // Hide token form and show main content
       tokenForm.style.display = "none";
-      mainContent.style.display = "block";
+      mainContent.style.display = "flex";
     } else {
       alert("Please enter a valid token.");
     }
@@ -34,23 +34,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   document
     .getElementById("fetch-events")
     .addEventListener("click", async () => {
-      const events = await fetchCanvasEventsFromToday();
-      if (events) {
-        displayEvents(events);
+      try {
+        const events = await fetchCanvasEventsFromToday();
+        if (events && events.length > 0) {
+          displayEvents(events);
+        } else {
+          document.getElementById("event-list").innerHTML =
+            "<li>No events found</li>";
+        }
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        alert(`Error fetching events: ${error.message}`);
       }
     });
 });
 
 async function fetchCanvasEventsFromToday() {
   const today = new Date().toISOString().split("T")[0];
-
-  // Retrieve Canvas token from storage
   const { canvasToken } = await chrome.storage.local.get("canvasToken");
 
   if (!canvasToken) {
-    console.error("Canvas token is missing. Please set it in the extension.");
-    alert("Canvas token is missing. Please set it in the extension.");
-    return;
+    throw new Error("Canvas token is missing. Please set it in the extension.");
   }
 
   return new Promise((resolve, reject) => {
@@ -61,8 +65,10 @@ async function fetchCanvasEventsFromToday() {
         startDate: today,
       },
       (response) => {
-        if (response.error) {
-          reject(response.error);
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+        } else if (response.error) {
+          reject(new Error(response.error));
         } else {
           resolve(response.events);
         }
@@ -76,7 +82,10 @@ function displayEvents(events) {
   eventList.innerHTML = "";
   events.forEach((event) => {
     const listItem = document.createElement("li");
-    listItem.textContent = `${event.title} - ${event.start_at}`;
+    const date = new Date(event.start_at);
+    const formattedDate = date.toLocaleString();
+
+    listItem.innerHTML = `<strong>${event.title}</strong><br>${formattedDate}`;
     eventList.appendChild(listItem);
   });
 }
