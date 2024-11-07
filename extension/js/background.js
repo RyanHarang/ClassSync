@@ -1,35 +1,73 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "fetchCanvasEvents") {
     const { canvasToken } = request;
-    // Create URL object for easier parameter handling
-    const url = new URL("https://wwu.instructure.com/api/v1/calendar_events");
 
-    // Get today's date in YYYY-MM-DD format
-    const today = new Date().toISOString().split("T")[0];
+    // Fetch user -> courses -> assignments
+    const fetchUserAndCourses = async () => {
+      try {
+        // Fetch user ID
+        const userResponse = await fetch(
+          "https://wwu.instructure.com/api/v1/users/self",
+          {
+            method: "GET",
+            headers: { Authorization: `Bearer ${canvasToken}` },
+          }
+        );
 
-    // Get date 3 months from today for end_date
-    const endDate = new Date();
-    endDate.setMonth(endDate.getMonth() + 3);
-    const endDateStr = endDate.toISOString().split("T")[0];
+        if (!userResponse.ok) throw new Error("Failed to fetch user ID");
 
-    // Add query parameters
-    url.searchParams.append("type", "assignment");
-    // url.searchParams.append("start_date", today);
-    // url.searchParams.append("end_date", endDateStr);
-    url.searchParams.append("all_events", "true");
-    // url.searchParams.append("per_page", "50");
+        const userData = await userResponse.json();
+        const userId = `user_${userData.id}`;
 
-    fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${canvasToken}`,
-      },
-    })
+        // Fetch courses
+        const coursesResponse = await fetch(
+          "https://wwu.instructure.com/api/v1/courses?enrollment_state=active",
+          {
+            method: "GET",
+            headers: { Authorization: `Bearer ${canvasToken}` },
+          }
+        );
+
+        if (!coursesResponse.ok) throw new Error("Failed to fetch courses");
+
+        const coursesData = await coursesResponse.json();
+        const courseIds = coursesData.map((course) => `course_${course.id}`);
+
+        const startDate = new Date().toISOString();
+        const endDate = new Date(
+          new Date().setMonth(new Date().getMonth() + 3)
+        ).toISOString();
+
+        // Generate final calendar events URL
+        const url = new URL(
+          "https://wwu.instructure.com/api/v1/calendar_events"
+        );
+        [userId, ...courseIds].forEach((id) =>
+          url.searchParams.append("context_codes[]", id)
+        );
+        url.searchParams.append("start_date", startDate);
+        url.searchParams.append("end_date", endDate);
+        url.searchParams.append("type", "assignment");
+        // probably need a seperate request to get events?
+
+        return url;
+      } catch (error) {
+        console.error("Error fetching user or courses:", error);
+        throw error;
+      }
+    };
+
+    // Fetch events using generated URL
+    fetchUserAndCourses()
+      .then((url) => {
+        return fetch(url, {
+          method: "GET",
+          headers: { Authorization: `Bearer ${canvasToken}` },
+        });
+      })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok");
+        if (response.ok) return response.json();
+        throw new Error("Failed to fetch calendar events");
       })
       .then((data) => {
         sendResponse({ events: data });
@@ -39,7 +77,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ error: error.message });
       });
 
-    // Return true to indicate you want to send a response asynchronously
     return true;
   }
 });
