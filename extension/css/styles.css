@@ -28,15 +28,25 @@ body {
 .event-list {
   margin-top: 20px;
   font-size: 1rem;
-
 }
 
 .event-list li {
   margin-bottom: 5px;
 }
 
+.label {
+  margin-bottom: 2px;
+  font-size: 1rem;
+}
+
+.input {
+  padding: 2px;
+  width: 150px;
+  border-radius: 5px;
+}
+
 .btn {
-  padding: 10px 10px;
+  padding: 10px;
   margin: 5px;
   min-width: 150px;
   border: none;
