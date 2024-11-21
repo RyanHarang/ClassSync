@@ -6,7 +6,7 @@
 }
 
 body {
-  padding: 20px;
+  padding: 15px;
   min-height: 200px;
   width: 200px;
   display: flex;
@@ -27,13 +27,22 @@ body {
 
 .event-list {
   margin-top: 20px;
+  font-size: 1rem;
+
+}
+
+.event-list li {
+  margin-bottom: 5px;
 }
 
 .btn {
   padding: 10px 10px;
+  margin: 5px;
+  min-width: 150px;
   border: none;
   border-radius: 5px;
   background-color: #1478bb;
+  color: white;
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -49,4 +58,22 @@ body {
   color: white;
   cursor: not-allowed;
   opacity: 0.4;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
