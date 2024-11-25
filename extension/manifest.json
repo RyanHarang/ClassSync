@@ -3,7 +3,11 @@
   "name": "Class Sync",
   "version": "1.0",
   "description": "Sync Canvas calendar events with Outlook.",
-  "permissions": ["identity", "storage", "activeTab"],
+  "permissions": [
+    "identity",
+    "storage",
+    "activeTab"
+  ],
   "host_permissions": [
     "https://wwu.instructure.com/*",
     "https://graph.microsoft.com/*"
@@ -24,6 +28,9 @@
   },
   "oauth2": {
     "client_id": "<YOUR_MICROSOFT_CLIENT_ID>",
-    "scopes": ["Calendars.ReadWrite"]
+    "scopes": [
+      "Calendars.ReadWrite"
+    ]
   }
+  // "canvas_access_token": "10~H9HX47nfATD7yVfaXPGMrPz2HUG74MkKDMXW8DvF7wWQAt6fRAx6xfkLBB9UkRPV"
 }
