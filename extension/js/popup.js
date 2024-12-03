@@ -131,7 +131,7 @@ function generateICSContent(events) {
 
     // Remove HTML tags
     const cleanDescription = event.description
-      ? event.description.replace(/<\/?[^>]+(>|$)/g, "")
+      ? decodeHTMLEntities(event.description.replace(/<\/?[^>]+(>|$)/g, ""))
       : "No description";
 
     icsLines.push(
@@ -149,6 +149,12 @@ function generateICSContent(events) {
 
   icsLines.push("END:VCALENDAR");
   return icsLines.join("\r\n");
+}
+
+function decodeHTMLEntities(text) {
+  const textarea = document.createElement("textarea");
+  textarea.innerHTML = text;
+  return textarea.value;
 }
 
 function downloadICSFile(icsContent) {
