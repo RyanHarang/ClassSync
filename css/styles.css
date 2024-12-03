@@ -7,7 +7,8 @@
 body {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding-top: 25vh;
   align-items: center;
   background-color: #253749;
   font-family: Arial, sans-serif;
@@ -30,12 +31,42 @@ body {
   outline: 2px solid #1478bb;
 }
 
-.content {
+.tab-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background-color: #253749;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab:hover,
+.tab:focus {
+  border-bottom: 2px solid #3990a9;
+}
+
+.tab.active {
+  border-bottom: 2px solid #1478bb;
+}
+
+.content.active {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.content {
+  display: none;
   color: white;
 }
 

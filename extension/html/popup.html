@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Sync</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+
+  <body>
+    <div id="token-form" class="token-form">
+      <label for="canvas-token" class="label">Enter Canvas Token:</label>
+      <input
+        type="text"
+        id="canvas-token"
+        class="input"
+        placeholder="Canvas API Token"
+      />
+      <button id="save-token" class="btn">Save Token</button>
+    </div>
+
+    <div id="main-content" class="main-content" style="display: none">
+      <button id="fetch-events" class="btn">Sync Calendar</button>
+      <button id="download-ics" class="btn">Download .ics</button>
+      <ul id="event-list" class="event-list"></ul>
+    </div>
+    <script src="../js/popup.js"></script>
+  </body>
+</html>
