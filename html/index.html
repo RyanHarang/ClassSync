@@ -12,23 +12,60 @@
   <header>
     <h1 class="title">ClassSync</h1>
   </header>
-  <section class="content">
-    <h2 class="subtitle">Instructions</h2>
+  <section class="tab-container">
+    <button class="tab active" data-tab="pdf-converter">PDF Converter</button>
+    <button class="tab" data-tab="extension-instructions">Extension Instructions</button>
+  </section>
+  <section id="pdf-converter" class="content active">
+    <h2 class="subtitle">Conversion Instructions</h2>
     <ul class="instructions-list">
-      <li class="instruction">Step 1: Login to <a class="link"
+      <li class="instruction">
+        Step 1: Login to <a class="link"
           href="https://registration.banner.wwu.edu/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory"
-          target="_blank" rel="noopener noreferrer">Web4U: View Registration Information</a></li>
-      <li class="instruction">Step 2: Select the quarter you want to add to your calendar</li>
-      <li class="instruction">Step 3: Click the <img class="print-icon" src="../assets/svg/print.svg"
-          alt="print icon" /> print icon to
-        download your schedule PDF</li>
-      <li class="instruction">Step 4: Use the button below to upload your schedule PDF</li>
+          target="_blank" rel="noopener noreferrer">Web4U: View Registration Information</a>
+      </li>
+      <li class="instruction">
+        Step 2: Select the quarter you want to add to your calendar
+      </li>
+      <li class="instruction">
+        Step 3: Click the <img class="print-icon" src="../assets/svg/print.svg" alt="print icon" /> print icon to
+        download your schedule PDF
+      </li>
+      <li class="instruction">
+        Step 4: Use the button below to upload your schedule PDF
+      </li>
     </ul>
     <div class="btn-container">
       <button class="btn">Upload</button>
     </div>
   </section>
+  <section id="extension-instructions" class="content">
+    <h2 class="subtitle">Extension Instructions</h2>
+    <ul class="instructions-list">
+      <li class="instruction">
+        Step 1: Clone extension repository from <a class="link"
+          href="https://github.com/RyanHarang/ClassSync/tree/extension" target="_blank"
+          rel="noopener noreferrer">ClassSync GitHub</a>
+      </li>
+      <li class="instruction">
+        Step 2: Navigate to <a class="link" href="chrome://extensions/" target="_blank" rel="noopener noreferrer">Chrome
+          Extensions</a>
+      </li>
+      <li class="instruction">
+        Step 3: Select 'Load Unpacked', then select the 'extension' folder from the cloned
+        repository
+      </li>
+      <li class="instruction">
+        Step 4: Navigate to <a class="link" href="https://wwu.instructure.com/profile/settings" target="_blank"
+          rel="noopener noreferrer">Canvas Settings</a> and select '+ New Access Token'
+      </li>
+      <li class="instruction">
+        Step 5: Enter your new Canvas API Token into the ClassSync extension and select 'Save'
+      </li>
+    </ul>
+  </section>
   <footer></footer>
+  <script src="../js/script.js"></script>
 </body>
 
 </html>
