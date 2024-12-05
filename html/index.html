@@ -13,33 +13,10 @@
     <h1 class="title">ClassSync</h1>
   </header>
   <section class="tab-container">
-    <button class="tab active" data-tab="pdf-converter">PDF Converter</button>
-    <button class="tab" data-tab="extension-instructions">Extension Instructions</button>
+    <button class="tab active" data-tab="written-instructions">Written Instructions</button>
+    <button class="tab" data-tab="video-demonstration">Video Demonstration</button>
   </section>
-  <section id="pdf-converter" class="content active">
-    <h2 class="subtitle">Conversion Instructions</h2>
-    <ul class="instructions-list">
-      <li class="instruction">
-        Step 1: Login to <a class="link"
-          href="https://registration.banner.wwu.edu/StudentRegistrationSsb/ssb/registrationHistory/registrationHistory"
-          target="_blank" rel="noopener noreferrer">Web4U: View Registration Information</a>
-      </li>
-      <li class="instruction">
-        Step 2: Select the quarter you want to add to your calendar
-      </li>
-      <li class="instruction">
-        Step 3: Click the <img class="print-icon" src="../assets/svg/print.svg" alt="print icon" /> print icon to
-        download your schedule PDF
-      </li>
-      <li class="instruction">
-        Step 4: Use the button below to upload your schedule PDF
-      </li>
-    </ul>
-    <div class="btn-container">
-      <button class="btn">Upload</button>
-    </div>
-  </section>
-  <section id="extension-instructions" class="content">
+  <section id="written-instructions" class="content active">
     <h2 class="subtitle">Extension Instructions</h2>
     <ul class="instructions-list">
       <li class="instruction">
@@ -63,6 +40,15 @@
         Step 5: Enter your new Canvas API Token into the ClassSync extension and select 'Save'
       </li>
     </ul>
+  </section>
+  <section id="video-demonstration" class="content">
+    <h2 class="subtitle">Video Demonstration</h2>
+    <div class="video-container">
+      <video controls class="demo">
+        <source src="../assets/videos/classSyncDemo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
   </section>
   <footer></footer>
   <script src="../js/script.js"></script>
