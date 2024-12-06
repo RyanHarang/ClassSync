@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Class Sync",
+  "name": "ClassSync",
   "version": "1.0",
   "description": "Sync Canvas calendar events with Outlook.",
   "permissions": ["identity", "storage", "activeTab"],
